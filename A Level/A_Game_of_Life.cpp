@@ -17,30 +17,24 @@ const ll INF = 1e9;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int arr[2 * n];
-    int k = 2 * n - 1;
-    int h = 0;
-    for (int i = 0; i < 2 * n; i++)
-        cin >> arr[i];
-    sort(arr, arr + 2 * n);
-    int res[2 * n];
-    for (int i = 0; i < 2 * n; i += 2)
+    int n, m;
+    string s;
+    cin >> n >> m >> s;
+    s = "0" + s + "0";
+    string p = s;
+    while (m--)
     {
-        res[i] = arr[k];
-        k--;
+        for (int i = 1; i <= n; i++)
+        {
+            if (p[i - 1] + p[i + 1] == 97)
+                s[i] = '1';
+        }
+        if (s == p)
+            break;
+        p = s;
     }
-
-    for (int i = 1; i < 2 * n; i += 2)
-    {
-        res[i] = arr[h];
-        h++;
-    }
-
-    for (int i = 0; i < 2 * k; i++)
-
-        cout << res[i] << " ";
+    for (int i = 1; i <= n; i++)
+        cout << s[i];
     cout << endl;
 }
 
@@ -53,7 +47,7 @@ int main()
     cin >> tc;
     for (int t = 1; t <= tc; t++)
     {
-        // cout << "Case #" << t  << ": ";
+        // cout << "Case #" << t << ": ";
         solve();
     }
 }
