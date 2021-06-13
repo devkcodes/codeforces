@@ -22,15 +22,17 @@ void solve()
     cin >> n;
     string s;
     cin >> s;
-    int p;
-    cin >> n >> s;
-    p = 0;
+    int z = 0;
     for (int i = 0; i < n; i++)
-        p += s[i] == '0';
-    if (n % 2 && s[n / 2] == '0' && p > 1)
-        cout << "ALICE" << endl;
-    else
+        if (s[i] == '0')
+            z++;
+    if (z == 1)
         cout << "BOB" << endl;
+    else if (z % 2 == 0)
+        cout << "BOB" << endl;
+    else
+        cout << "ALICE" << endl;
+
     return;
 }
 
@@ -47,3 +49,4 @@ int main()
         solve();
     }
 }
+
