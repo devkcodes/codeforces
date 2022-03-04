@@ -13,48 +13,49 @@ using namespace __gnu_pbds;
 #define minpq priority_queue <ll, vector<ll>, greater<ll>>
 #define maxpq priority_queue<ll>
 #define rep(i, k, n) for (int i = k; i < n; ++i)
-#define repr(i, k, n) for (i = n; i >= k; i--)
+#define repr(i, k, n) for (int i = n; i >= k; i--)
 #define debug(x, y) cout << x << " : " << y << endl;
 #define debugarr(arr, i, n) \
-   for (i = 0; i < n; i++)   \
-     cout << arr[i] << " ";  \
-   cout << endl;
+  for (i = 0; i < n; i++)   \
+    cout << arr[i] << " ";  \
+  cout << endl;
 //********MACROS********
 
 /* stuff you should look for
 	* int overflow, array bounds
 	* special cases (n=1?)
-	* do smth instead of nothing and stay organized
+	* do smth instead of nothing && stay organized
 	* WRITE STUFF DOWN
 	* DON'T GET STUCK ON ONE APPROACH
 */
 
 
 
-void solve() {
 
+
+void solve()
+{
 	int n;
-	cin << s;
-	string s;
-	cin >> s;
-	unordered_map<string, int>mp;
-
-	if (s.length() > 1)
-		mp[s.substr(1)]++;
-
-	for (int i = 1; i < n; i++)
-	{
-		string x = s.substr(0, i - 1) + s.substr(i + 1);
-		mp[x]++;
+	cin >> n;
+	char arr[2][n];
+	for (int i = 0; i < n; i++) {
+		cin >> arr[0][i];
 	}
-	int ans = 0;
-	for (auto i : mp)
-	{
-		ans += i.second;
+	for (int i = 0; i < n; i++) {
+		cin >> arr[1][i];
+	}
+	bool x = true;
+	for (int i = 0; i < n; i++) {
+		if (arr[0][i] == '1' && arr[1][i] == '1')
+			x = false;
 	}
 
-	cout << ans << endl;
+	if (x)
+		cout << "YES" << endl;
+	else cout << "NO" << endl;
 	return;
+
+
 
 }
 
@@ -67,10 +68,9 @@ int main() {
 	freopen("output.txt", "w", stdout);
 #endif
 	int t;
-	t = 1;
+
 	cin >> t;
 	while (t--) {
-		//cout << "Case #" << t + 1 << ": "; --> -->
 		solve();
 	}
 	cerr << "Time elapsed: " << (double)(clock() - t1) / 1000 << " s" << endl;

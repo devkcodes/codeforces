@@ -29,38 +29,94 @@ using namespace __gnu_pbds;
 	* DON'T GET STUCK ON ONE APPROACH
 */
 
+void even(int ans[], int n, int a, int b) {
+
+	int start = 1, end = n, i = 0, rem_i = n - 1 - i;
+	int x = max(a, b);
+	while (x--)
+	{
+		ans[i] = start;
+		ans[i + 1] = end;
+		start++; end--; i += 2; rem_i--;
+	}
+	while (rem_i--) {
+		ans[i] = start;
+		start++; i++;
+	}
+
+	if (a == b) {
+		return;
+	}
+
+
+	else
+	{
+		if (a > b)
+			swap(ans[n - 1], ans[n - 2]);
+		if (a < b) swap(ans[0], ans[1]);
+	}
+	return;
+}
+
+void odd_a(int ans[], int n, int a, int b) {
+
+	int start = 1, end = n, i = 0, rem_i = n - 1 - i;
+	int x = a;
+	while (x--)
+	{
+		ans[i] = start;
+		ans[i + 1] = end;
+		start++; end--; i += 2; rem_i--;
+	}
+	int m = rem_i;
+	while (rem_i--) {
+		ans[i] = start;
+		start++; i++;
+	}
+
+	if (a == b && rem_i > 0) {
+		swap(ans[0], ans[1]);
+	}
+
+	return;
+
+}
+
+void odd_b(int ans[], int n, int a, int b) {
+
+	int start = n, end = 1, i = 0, rem_i = n - 1 - i;
+	int x = a;
+	while (x--)
+	{
+		ans[i] = start;
+		ans[i + 1] = end;
+		start--; end++; i += 2; rem_i--;
+	}
+	while (rem_i--) {
+		ans[i] = start;
+		start--; i++;
+	}
+
+	return;
+
+}
 
 
 
 void solve() {
-	int n;
-	cin >> n;
-	int arr[n];
-	int sum = 0;
-	int count = 0;
-	rep(i, 0, n)
-	{	cin >> arr[i];
-		sum += arr[i];
-		count++;
-	}
 
-	if (count == sum)
-		cout << 0 << endl;
+	int arr[7];
+	for (int i = 0; i < 7; i++)
+		cin >> arr[i];
 
-	else if (count > sum)
-		cout << 1 << endl;
+	sort(arr, arr + 7);
 
-	else cout << sum - count << endl;
-
-	return;
-
-
+	cout << arr[0] << " " << arr[1] << " " << arr[6] - (arr[0] + arr[1] ) << endl;
 }
 
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	clock_t t1 = clock();
+
+
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
@@ -72,7 +128,6 @@ int main() {
 		//cout << "Case #" << t + 1 << ": "; --> -->
 		solve();
 	}
-	cerr << "Time elapsed: " << (double)(clock() - t1) / 1000 << " s" << endl;
 }
 
 
